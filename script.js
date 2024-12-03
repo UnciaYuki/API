@@ -9,8 +9,8 @@ fetch('https://fakestoreapi.com/products')
         console.log(donnee)
         //ici j'ai une liste de produits
         //je boucle sur le tableau de données
-        donnee.forEach(prod => {
-            affiche(prod)
+        donnee.forEach(produit => {
+            affiche(produit)
         });
     })
 // Rôle : Afficher un produit dans la page HTML sous forme de cartes
@@ -18,31 +18,30 @@ fetch('https://fakestoreapi.com/products')
 // Retour : Cette fonction ne retourne rien (elle effectue des manipulations DOM)
 function affiche(prod) {
     //afficher dans le dom les petites cartes
-    let tag = produit.category
+    let tag = prod.category
     let description = prod.description
     let img = prod.image
     let price = prod.price
-    let rate = prod.rate
-    let count = prod.count
+    let rate = prod.rating.rate
+    let count = prod.rating.count
     let title = prod.title
 
-    let card = document.querySelector(".card")
-    card.innerHTML += `
-<div>
-                <div>
-                    <p class="cardTop flex spaceBetween">${tag}</p>
+    document.querySelector(".carte").innerHTML += 
+    `
+            <div class="card flex">
+                <div class="flex cardTop">
+                    <p>${tag}</p>
                     <img src="${img}" class="card-img center" alt="">
                 </div>
                 <div class="card-body">
                     <h2 class="card-title">${title}</h2>
-                    <p class="card-text">${description}</p> <!-- Description -->
+                    <p class="card-text">${description}</p> 
                     <div>
-                        <div class="flex paddingCard">
-                            <p class="flex"><a href="" title="">${rate}</a></p> <!-- Note -->
-                            <p>${price}</p> <!-- Prix -->
+                        <div class="flex spaceBetween">
+                            <p><a href="" title="">${rate}★${count}</a></p> 
+                            <p>${price}</p> 
                         </div>
                         <a href="" title="" class="btn marginAuto">Ajouter au panier</a>
-                        <!-- bouton Ajouter au panier -->
                     </div>
                 </div>
             </div>
